@@ -27,20 +27,6 @@
       "address": "Noida",
       "rating": "4",
       "email": "icecreamhut@test.com"
-    },
-    {
-      "id": 5,
-      "name": "Haldiram",
-      "address": "Delhi",
-      "rating": "5",
-      "email": "haldiram@test.com"
-    },
-    {
-      "name": "Baskin Robbins",
-      "email": "baskinrobbins@gmail.com",
-      "address": "veraval",
-      "rating": "3",
-      "id": 8
     }
   ]
 }

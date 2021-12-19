@@ -1,0 +1,32 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "name": "gaurav",
+        "email": "gaurav@test.com",
+        "articles": "facebook",
+        "rating": "4",
+        "followers": "250",
+        "image": "img/facebook.jpg"
+      },
+      {
+        "id": 2,
+        "name": "ram",
+        "articles": "instagram",
+        "rating": "5",
+        "email": "ram@test.com",
+        "followers":"300",
+        "image": "img/insta.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Sapna",
+        "articles": "twitter",
+        "rating": "4.5",
+        "email": "sapna@test.com",
+        "followers":"450",
+        "image": "img/twit.jpg"
+      }
+    ]
+  }
+  
