@@ -4,20 +4,20 @@ import { Text } from "react-native-paper";
 
 function HomePage({ navigation }) {
   const routInfo = useRoute();
-  const { userName, userEmail, password } = routInfo.params;
+  const { loginUserName, loginPassword } = routInfo.params;
 
   setTimeout(() => {
-    navigation.navigate("SignUp");
+    navigation.navigate("SignIn");
   }, 120000);
 
   const backToLoginScreen = () => {
-    navigation.navigate("SignUp");
+    navigation.navigate("SignIn");
   };
   return (
     <>
       <Text>
-        Hi {userEmail}
-        {userEmail}!! loggedIn Successfully
+        Hi {loginUserName}
+        {loginUserName}!! loggedIn Successfully
       </Text>
       <Text onPress={backToLoginScreen}>LogOut</Text>
     </>

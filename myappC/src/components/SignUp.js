@@ -21,6 +21,7 @@ function SignUp({ navigation }) {
   const [passwordValidationErr, setPasswordValidationErr] = useState("");
   const [confirmPasswordValidationErr, setConfirmPasswordValidationErr] =
     useState("");
+
   //below is written for after submitting button if we are coming back then data is cleared
   useFocusEffect(
     React.useCallback(() => {
@@ -53,47 +54,48 @@ function SignUp({ navigation }) {
   };
 
   const onPressContinue = () => {
-    // const userNameValidation = UsernameValid(userName.val);
+    const userNameValidation = UsernameValid(userName.val);
 
-    // if (!userNameValidation.isValid) {
-    //   return setUserName({ ...userName, error: userNameValidation.errorMsg });
-    // } else {
-    //   setUserName({ ...userName, error: "" });
-    // }
+    if (!userNameValidation.isValid) {
+      return setUserName({ ...userName, error: userNameValidation.errorMsg });
+    } else {
+      setUserName({ ...userName, error: "" });
+    }
 
-    // const emailValidation = EmailValidation(userEmail);
+    const emailValidation = EmailValidation(userEmail);
 
-    // if (!emailValidation.isValid) {
-    //   return setEmailValidationErr(emailValidation.errorMsg);
-    // } else setEmailValidationErr("");
+    if (!emailValidation.isValid) {
+      return setEmailValidationErr(emailValidation.errorMsg);
+    } else setEmailValidationErr("");
 
-    // const passwordValidation = PasswordValidation(password);
+    const passwordValidation = PasswordValidation(password);
 
-    // if (!passwordValidation.isValid) {
-    //   return setPasswordValidationErr(passwordValidation.errorMsg);
-    // } else {
-    //   setPasswordValidationErr("");
-    // }
+    if (!passwordValidation.isValid) {
+      return setPasswordValidationErr(passwordValidation.errorMsg);
+    } else {
+      setPasswordValidationErr("");
+    }
 
-    // const confirmPasswordValidation = ConfirmPasswordValidation(
-    //   password,
-    //   confirmPassword
-    // );
+    const confirmPasswordValidation = ConfirmPasswordValidation(
+      password,
+      confirmPassword
+    );
 
-    // if (!confirmPasswordValidation.isValid) {
-    //   return setConfirmPasswordValidationErr(
-    //     confirmPasswordValidation.errorMsg
-    //   );
-    // } else {
-    //   setConfirmPasswordValidationErr("");
-    // }
+    if (!confirmPasswordValidation.isValid) {
+      return setConfirmPasswordValidationErr(
+        confirmPasswordValidation.errorMsg
+      );
+    } else {
+      setConfirmPasswordValidationErr("");
+    }
 
-    return navigation.navigate("HomePage", {
+    return navigation.navigate("SignIn", {
       userName: userName.val,
       userEmail: userEmail,
       password: password,
     });
   };
+
   return (
     // <SafeAreaView>
     <MainContainer>
