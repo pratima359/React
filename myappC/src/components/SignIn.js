@@ -1,4 +1,4 @@
-import { Link, useRoute } from "@react-navigation/native";
+import { Link, useFocusEffect, useRoute } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import {
   Button,
@@ -11,26 +11,33 @@ import {
 import styled from "styled-components";
 import WDPressable from "./WDPressable";
 import { UsernameValid } from "../function";
+import { useDispatch, useSelector } from "react-redux";
+import { userData } from "../MockedUser";
+import { loginUser } from "../redux/action/UserAction";
 
 const SignIn = ({ navigation }) => {
   const [loginUserName, setLoginUserName] = useState("");
-  console.log(
-    "🚀 ~ file: SignIn.js:17 ~ SignIn ~ loginUserName:",
-    loginUserName
-  );
   const [loginPassword, setLoginPassword] = useState("");
   const [loginUserNameErr, setLoginUserNameErr] = useState("");
   const [loginPasswordErr, setLoginPasswordErr] = useState("");
   const [loginCredentialErr, setLoginCredentialErr] = useState("");
-
+  const userDispatch = useDispatch();
   const routInfo = useRoute();
   const userName = routInfo.params?.userName;
   const passwords = routInfo.params?.password;
-  console.log("🚀 ~ file: SignIn.js:24 ~ SignIn ~ passwords:", passwords);
-  console.log("🚀 ~ file: SignIn.js:12 ~ SignIn ~ userName:", userName);
+
+  //below is written for after submitting button if we are coming back then data is cleared
+  useFocusEffect(
+    React.useCallback(() => {
+      return () => {
+        setLoginUserName("");
+        setLoginPassword("");
+        setLoginCredentialErr("");
+      };
+    }, [])
+  );
 
   const onLoginHandler = (text) => {
-    console.log("🚀 ~ file: SignIn.js:32 ~ onLoginHandler ~ text:", text);
     setLoginUserName(text);
   };
 
@@ -38,12 +45,27 @@ const SignIn = ({ navigation }) => {
     setLoginPassword(text);
   };
 
+  useEffect(() => {
+    userDispatch(loginUser(userData));
+  }, []);
+
+  //to use the store state, we can use useSelector()
+  const userStateData = useSelector((state) => state.user);
+
+  const userArray = userStateData.usersData.users;
+  console.log("🚀 ~ file: SignIn.js:49 ~ SignIn ~ userArray:", userArray);
+  const filteredData = userArray?.find((val) => {
+    console.log("valssss", val);
+    return val.name === loginUserName && val.password === loginPassword;
+  });
+
+  console.log("🚀 ~ file: SignIn.js:50 ~ SignIn ~ filteredData:", filteredData);
   // useEffect(() => {
   //   setLoginUserName(userName);
   // }, [userName]);
 
   const onPressContinue = () => {
-    if (loginUserName === userName && loginPassword === passwords) {
+    if (filteredData !== undefined) {
       navigation.navigate("HomePage", {
         loginUserName: loginUserName,
       });

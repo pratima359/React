@@ -1,5 +1,5 @@
 export const userData = {
-  user: [
+  users: [
     {
       id: 1,
       name: "Ankit",

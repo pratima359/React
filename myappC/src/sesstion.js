@@ -3,7 +3,7 @@ async function storeUserSession() {
     await EncryptedStorage.setItem(
       "user_session",
       JSON.stringify({
-        token: "ACCESS_TOKEN",
+        token: "ACCESS_TOKEN123",
         username: "emeraldsanto",
         email: "p@gmail.com",
         password: "Pratima@123",
